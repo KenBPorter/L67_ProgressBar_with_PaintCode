@@ -10,16 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var progressBarView: ProgressBarView!
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var progressIndex: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        progressIndex.text = "Progress: 0.00 %"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func sliderMoved(_ sender: Any) {
+        progressBarView.progress = CGFloat(slider.value)
+        
+        progressIndex.text = "Progress: \(slider.percentCompleted(numOfDecimals: 2))"
+        
     }
-
-
+    
 }
 
